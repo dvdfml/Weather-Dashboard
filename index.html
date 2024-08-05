@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Dashboard</title>
     <link rel="stylesheet" href="./assets/css/style.css">
-    <script href="./assets/js/script.js"></script>
 </head>
 
 <body>
@@ -15,11 +14,17 @@
     </header>
     <main>
         <aside>
-            <form>
+            <form id="search-form">
                 <h2>Search for a City:</h2>
-                <input type="text" placeholder="city">
-                <button type="submit">Search</button>
+                <input id="search-input" type="text" placeholder="city">
+                <button type="submit" id="search-button">Search</button>
             </form>
+            <div id="search-history">
+                <button>Atlanta</button>
+                <button>Denver</button>
+                <button>Seattle</button>
+                <button>Colorado</button>
+            </div>
         </aside>
         <section>
             <div id="city-card">
@@ -30,9 +35,9 @@
                     <li>Humidity: 44%</li>
                 </ul>
             </div>
-            <div>
+            <div id="forecast">
                 <h3>5-Day Forecast:</h3>
-                <div>
+                <div id="forecast-card">
                     <h4>9/14/2022</h4>
                     <img>
                     <ul>
@@ -41,7 +46,7 @@
                         <li>Humidity: 44%</li>
                     </ul>
                 </div>
-                <div>
+                <div id="forecast-card">
                     <h4>9/14/2022</h4>
                     <img>
                     <ul>
@@ -54,5 +59,7 @@
         </section>
     </main>
 </body>
+
+<script src="./assets/js/script.js"></script>
 
 </html>
