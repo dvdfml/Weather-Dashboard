@@ -134,7 +134,7 @@ async function searchButtonHandler(event) {
 function renderWeather(currentWeather) {
     const date = new Date();
     cityCardEl.innerHTML = `
-                <h2 id="card-heading">${currentWeather.name} (${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()})</h2>
+                <h2 id="card-heading">${currentWeather.name} (${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()})</h2>
                 <img src="https://openweathermap.org/img/wn/${currentWeather.weather[0].icon}@2x.png">
                 <ul>
                     <li>Temp: ${currentWeather.main.temp} F</li>
@@ -147,9 +147,10 @@ function renderWeather(currentWeather) {
 function renderForecast(forecast) {
     let listIndex = 3;
     for (let i = 1; i <= 5; i++) {
+        const date = new Date(forecast.list[listIndex].dt * 1000)
         const forecastCardEl = document.getElementById(`forecast-card-${i}`);
         forecastCardEl.innerHTML = `
-                    <h4>9/14/2022</h4>
+                    <h4>${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}</h4>
                     <img src="https://openweathermap.org/img/wn/${forecast.list[listIndex].weather[0].icon}@2x.png">
                     <ul>
                         <li>Temp: ${forecast.list[listIndex].main.temp} F</li>
