@@ -156,6 +156,5 @@ function renderForecast(forecast) {
     }
 }
 
-localStorage.setItem('example', [0, 1, 2]);
 renderSearchHistory();
 formEl.addEventListener('submit', searchHandler);
