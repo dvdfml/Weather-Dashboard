@@ -80,6 +80,7 @@ async function searchHandler(event) {
         setSearchHistory(city);
         renderSearchHistory();
     }
+    inputEl.value = "";
 }
 
 function setSearchHistory(city) {
