@@ -8,7 +8,8 @@ body {
 
 header {
     height: 80px;
-    background-color: blue;
+    background-color: rgb(38, 19, 96);
+    background-image: linear-gradient(to right, rgb(69, 88, 182), rgb(38, 19, 96));
     color: white;
     display: flex;
     justify-content: center;
@@ -62,7 +63,12 @@ h3 {
     width: 100%;
 }
 
+img {
+    width: 50px;
+}
+
 #city-card {
+    text-align: center;
     width: 100%;
     border: solid;
 }
@@ -77,8 +83,9 @@ h3 {
 
 #search-button {
     color: white;
-    background-color: blue;
+    background-color: rgb(105, 145, 227);
     border: none;
+    border-radius: 3px;
 
 }
 
@@ -93,10 +100,32 @@ h3 {
 #forecast {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
-#forecast-card {
-    background-color: black;
+.forecast-card {
+    text-align: center;
+    background-color: rgb(50, 61, 79);
     color: white;
     margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+@media only screen and (max-width: 768px) {
+    aside {
+        width: 80%;
+    }
+
+    section {
+        width: 80%
+    }
+
+    #forecast {
+        width: 80;
+        justify-content: center;
+    }
+
+    .forecast-card {
+        min-width: 150px;
+    }
 }
