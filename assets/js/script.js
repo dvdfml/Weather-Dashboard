@@ -66,7 +66,6 @@ async function searchHandler(event) {
 
     event.preventDefault();
     const city = inputEl.value;
-    console.log(city);
     const cityResponse = await getGeocodingApi(city);
     if (cityResponse) {
         const { lat, lon } = cityResponse[0];
@@ -74,11 +73,9 @@ async function searchHandler(event) {
         const forecast = await getForecastApi(lat, lon);
         if (currentWeather) {
             renderWeather(currentWeather);
-            console.log(currentWeather);
         }
         if (forecast) {
             renderForecast(forecast);
-            console.log(forecast);
         }
         setSearchHistory(city);
         renderSearchHistory();
@@ -114,7 +111,6 @@ function renderSearchHistory() {
 
 async function searchButtonHandler(event) {
     const city = event.target.innerText;
-    console.log(city);
     const cityResponse = await getGeocodingApi(city);
     if (cityResponse) {
         const { lat, lon } = cityResponse[0];
@@ -122,11 +118,9 @@ async function searchButtonHandler(event) {
         const forecast = await getForecastApi(lat, lon);
         if (currentWeather) {
             renderWeather(currentWeather);
-            console.log(currentWeather);
         }
         if (forecast) {
             renderForecast(forecast);
-            console.log(forecast);
         }
     }
 }
