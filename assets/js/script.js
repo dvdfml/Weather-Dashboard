@@ -5,7 +5,7 @@ const searchHistoryEl = document.getElementById('search-history');
 const apiKey = '30cd920476e578641380e3efd7353e7c';
 
 async function getGeocodingApi(city) {
-    const url = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`
+    const url = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`
 
     try {
         const response = await fetch(url, {
@@ -44,7 +44,7 @@ async function getWeatherApi(lat, lon) {
 
 async function getForecastApi(lat, lon) {
 
-    const url = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`
+    const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`
     try {
         const response = await fetch(url, {
             method: 'GET',
