@@ -1,6 +1,7 @@
 const formEl = document.getElementById('search-form');
 const inputEl = document.getElementById('search-input');
 const cityCardEl = document.getElementById('city-card');
+const searchHistoryEl = document.getElementById('search-history');
 const apiKey = '30cd920476e578641380e3efd7353e7c';
 
 async function getGeocodingApi(city) {
@@ -79,6 +80,54 @@ async function searchHandler(event) {
             renderForecast(forecast);
             console.log(forecast);
         }
+        setSearchHistory(city);
+        renderSearchHistory();
+    }
+}
+
+function setSearchHistory(city) {
+    const storedCities = JSON.parse(localStorage.getItem('cities'));
+    if (storedCities) {
+        const cities = storedCities.filter(item => {
+            return item != city
+        })
+        cities.push(city);
+        localStorage.setItem('cities', JSON.stringify(cities));
+    } else {
+        localStorage.setItem('cities', JSON.stringify([city]));
+    }
+}
+
+function renderSearchHistory() {
+    searchHistoryEl.innerHTML = "";
+    const cities = JSON.parse(localStorage.getItem('cities'));
+    if (cities) {
+        for (let i = cities.length - 1; i >= 0; i--) {
+            const cityButton = document.createElement('button');
+            cityButton.textContent = cities[i];
+            searchHistoryEl.appendChild(cityButton);
+            cityButton.addEventListener('click', searchButtonHandler)
+        }
+    }
+
+}
+
+async function searchButtonHandler(event) {
+    const city = event.target.innerText;
+    console.log(city);
+    const cityResponse = await getGeocodingApi(city);
+    if (cityResponse) {
+        const { lat, lon } = cityResponse[0];
+        const currentWeather = await getWeatherApi(lat, lon);
+        const forecast = await getForecastApi(lat, lon);
+        if (currentWeather) {
+            renderWeather(currentWeather);
+            console.log(currentWeather);
+        }
+        if (forecast) {
+            renderForecast(forecast);
+            console.log(forecast);
+        }
     }
 }
 
@@ -93,7 +142,6 @@ function renderWeather(currentWeather) {
                     <li>Humidity: ${currentWeather.main.humidity}%</li>
                 </ul>
     `
-    // sectionEl.appendChild(cityCard);
 }
 
 function renderForecast(forecast) {
@@ -113,4 +161,6 @@ function renderForecast(forecast) {
     }
 }
 
+localStorage.setItem('example', [0, 1, 2]);
+renderSearchHistory();
 formEl.addEventListener('submit', searchHandler);
